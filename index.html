@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+        <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 70%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: left;
+        }
+
+        tr:nth-child() {
+            background-color: #708090;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+
+<body>
+        <h1> Distributive and Scalable Data Engineering Final Project </h1>
+    <h1>House Price Prediction</h1>
+
+    <form action="/predict_price" method="post">
+        <table>
+                <tr>
+                <td>State:</td>
+                <td><select name="state" id ="state">
+                        <option value = 'Alaska'>Alaska</option>
+<option value = 'Alabama'>Alabama</option>
+<option value = 'Arkansas'>Arkansas</option>
+<option value = 'Arizona'>Arizona</option>
+<option value = 'California'>California</option>
+<option value = 'Colorado'>Colorado</option>
+<option value = 'Connecticut'>Connecticut</option>
+<option value = 'District of Columbia'>District of Columbia</option>
+<option value = 'Delaware'>Delaware</option>
+<option value = 'Florida'>Florida</option>
+<option value = 'Georgia'>Georgia</option>
+<option value = 'Hawaii'>Hawaii</option>
+<option value = 'Iowa'>Iowa</option>
+<option value = 'Idaho'>Idaho</option>
+<option value = 'Illinois'>Illinois</option>
+<option value = 'Indiana'>Indiana</option>
+<option value = 'Kansas'>Kansas</option>
+<option value = 'Kentucky'>Kentucky</option>
+<option value = 'Louisiana'>Louisiana</option>
+<option value = 'Massachusetts'>Massachusetts</option>
+<option value = 'Maryland'>Maryland</option>
+<option value = 'Maine'>Maine</option>
+<option value = 'Michigan'>Michigan</option>
+<option value = 'Minnesota'>Minnesota</option>
+<option value = 'Missouri'>Missouri</option>
+<option value = 'Mississippi'>Mississippi</option>
+<option value = 'Montana'>Montana</option>
+<option value = 'North Carolina'>North Carolina</option>
+<option value = 'Nebraska'>Nebraska</option>
+<option value = 'New Hampshire'>New Hampshire</option>
+<option value = 'New Jersey'>New Jersey</option>
+<option value = 'New Mexico'>New Mexico</option>
+<option value = 'Nevada'>Nevada</option>
+<option value = 'New York'>New York</option>
+<option value = 'Ohio'>Ohio</option>
+<option value = 'Oklahoma'>Oklahoma</option>
+<option value = 'Oregon'>Oregon</option>
+<option value = 'Pennsylvania'>Pennsylvania</option>
+<option value = 'Rhode Island'>Rhode Island</option>
+<option value = 'South Carolina'>South Carolina</option>
+<option value = 'South Dakota'>South Dakota</option>
+<option value = 'Tennessee'>Tennessee</option>
+<option value = 'Texas'>Texas</option>
+<option value = 'Utah'>Utah</option>
+<option value = 'Virginia'>Virginia</option>
+<option value = 'Vermont'>Vermont</option>
+<option value = 'Washington'>Washington</option>
+<option value = 'Wisconsin'>Wisconsin</option>
+<option value = 'West Virginia'>West Virginia</option>
+                        </select></td>
+
+                    </tr>
+                    <tr>
+                    <td>Ground Living Area:</td>
+                    <td><input type="number" name="gr_liv_area" id="gr_liv_area"></td>
+                </tr>
+                <tr>
+                    <td>Total Basement Square Footage:</td>
+                    <td><input type="number" name="total_bsmt_sf" id="total_bsmt_sf"></td>
+                </tr>
+                <tr>
+                    <td>Garage Cars:</td>
+                    <td><input type="number" name="garage_cars" id="garage_cars"></td>
+                </tr>
+                <tr>
+                    <td>Second Floor Square Footage:</td>
+                    <td><input type="number" name="second_flr_sf" id="second_flr_sf"></td>
+                </tr>
+                <tr>
+                    <td>Basement Finished Square Footage (1st Floor):</td>
+                    <td><input type="number" name="bsmt_fin_sf1" id="bsmt_fin_sf1"></td>
+                </tr>
+                            <td>Basement Quality:</td>
+                                <td><select name="bsmt_qual" id="bsmt_qual">
+                        <option value=0>NA</option>
+                        <option value=1>Fair</option>
+                        <option value=2>Typical/Average</option>
+                        <option value=3>Good</option>
+                        <option value=4>Excellent</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>First Floor Square Footage:</td>
+                    <td><input type="number" name="first_flr_sf" id="first_flr_sf"></td>
+                </tr>
+                <tr>
+                    <td>Lot Area:</td>
+                    <td><input type="number" name="lot_area" id="lot_area"></td>
+                </tr>
+                <tr>
+                    <td>Year Remod/Add:</td>
+                    <td><input type="number" name="year_remod_add" id="year_remod_add"></td>
+                </tr>
+                <tr>
+                    <td>Garage Type:</td>
+                    <td><select name="garage_type" id="garage_type">
+                        <option value=0>NA</option>
+                        <option value=1>Car Port</option>
+                        <option value=2>Attached Garage</option>
+                        <option value=3>Detached Garage</option>
+                        <option value=4>2-Car Garage (partly enclosed)</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Year Built:</td>
+                    <td><input type="number" name="year_built" id="year_built"></td>
+                </tr>
+                <tr>
+                    <td>Full Baths:</td>
+                    <td><input type="number" name="full_bath" id="full_bath"></td>
+                </tr>
+                <tr>
+                    <td>Kitchen Quality:</td>
+                    <td><select name="kitchen_qual" id="kitchen_qual">
+                            <option value=0>NA</option>
+                        <option value=1>Poor</option>
+                        <option value=2>Fair</option>
+                        <option value=3>Typical/Average</option>
+                        <option value=4>Good</option>
+                        <option value=5>Excellent</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Fireplaces:</td>
+                    <td><input type="number" name="fireplaces" id="fireplaces"></td>
+                </tr>
+                <tr>
+                    <td>Overall Condition:</td>
+                    <td><select name="overall_cond" id="overall_cond">
+                        <option value="NA">NA</option>
+                        <option value="1">Poor</option>
+                        <option value="2">Fair</option>
+                        <option value="3">Typical/Average</option>
+                        <option value="4">Good</option>
+                        <option value="5">Excellent</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Garage Area:</td>
+                    <td><input type="number" name="garage_area" id="garage_area"></td>
+                </tr>
+                <tr>
+                    <td>MS Zoning:</td>
+                    <td><select name="ms_zoning" id="ms_zoning">
+                        <option value=0>Residential Low Density</option>
+                        <option value=1>Residential Medium Density</option>
+                        <option value=2>Residential High Density</option>
+                        <option value=3>&emsp;C - Commercial</option>
+                        <option value="4">&emsp;I - Industrial</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Fireplace Quality:</td>
+                                    <td><select name="fireplace_qu" id="fireplace_qu">
+                            <option value=0>NA</option>
+                        <option value=1>Poor</option>
+                        <option value=2>Fair</option>
+                        <option value=3>Typical/Average</option>
+                        <option value=4>Good</option>
+                        <option value=5>Excellent</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Neighborhood:</td>
+                    <td><select name="neighborhood" id="neighborhood">
+                        <option value=1>N/A</option>
+                        <option value=2></option>
+                        <option value=3>College Cr</option>
+                        <option value=4>Northridge Heights</option>
+                        <option value=5>Northridge</option>
+                        <option value=6>Old Town</option>
+                        <option value=7>Sticky Creek</option>
+                        <option value=8>Lawson</option>
+                        <option value=9>Smtn W ISU</option>
+                        <option value=10>BrDale</option>
+                        <option value=11>StoneBr</option>
+                        <option value=12>Timber</option>
+                        <option value=13>Waterfront</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Overall Quality:</td>
+                    <td><select name="overall_qual" id="overall_qual" required>
+                                    <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    </td>
+    
+                </tr>
+    
+            </table>
+            <input type="submit" value="Predict">
+        </form>
+    
+    </body>
+    </html>
